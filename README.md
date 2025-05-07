@@ -1,7 +1,7 @@
 # KS-Capstone
 Digital Futures Capstone Project
 Overview
-This project presents an in-depth analysis of Steam games released up to the year 2025. Using a dataset sourced from Kaggle, it explores key market trends, peak concurrent player counts, player engagement patterns, and projected revenue. The results are presented through an interactive Streamlit dashboard that allows users to filter and explore insights by release year, genre, and other attributes.
+This project presents an in-depth analysis of Steam games released up to 03/2025. Using a dataset sourced from Kaggle, it explores key market trends, peak concurrent player counts, player engagement patterns, and projected revenue. The results are presented through an interactive Streamlit dashboard that allows users to filter and explore insights by release year, genre, and other attributes.
 
 Objectives
 Analyze the evolution of game genres, categories, and key features over time.
@@ -18,7 +18,7 @@ Dataset
 Source: Kaggle
 
 The dataset includes game titles, release dates, categories, genres, peak player counts, and other relevant metadata.
-https://www.kaggle.com/datasets/joebeachcapital/top-1000-steam-games/data
+https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
 
 ETL Process
 Extract: Load the dataset from Kaggle.
@@ -50,6 +50,5 @@ Clone the repository
 
 Install dependencies
 
-Run the Streamlit app:
+in progress
 
-    streamlit run app.py
