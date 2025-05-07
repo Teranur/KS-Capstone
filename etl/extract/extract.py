@@ -39,7 +39,7 @@ def extract_steam_data():
 
     except Exception as e:
         print(f"Error during data extraction: {e}")
-        sys.exit(1)
+        sys.exit(1)  # exits the scripts as to not run the rest of the pipeline
 
 
 if __name__ == "__main__":
