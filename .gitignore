@@ -142,6 +142,7 @@ cython_debug/
 
 # Data files
 # data/raw/
+data_raw/games_march2025_full.csv
 # etl/data/processed/
 # data/output/
 
