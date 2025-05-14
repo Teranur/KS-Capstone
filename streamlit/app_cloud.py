@@ -77,10 +77,16 @@ sel_tiers = st.sidebar.multiselect("Price Tier", price_tiers, default=[])
 # filtering logic
 mask = pd.Series(True, index=df.index)
 if sel_genres:
-    mask &= df["genres"].apply(lambda cell: any(g in cell for g in sel_genres))
+    mask &= (
+        df["genres"]
+        .fillna("")
+        .apply(lambda cell: any(g in cell for g in sel_genres))
+    )
 if sel_categories:
-    mask &= df["categories"].apply(
-        lambda cell: any(c in cell for c in sel_categories)
+    mask &= (
+        df["categories"]
+        .fillna("")
+        .apply(lambda cell: any(c in cell for c in sel_categories))
     )
 if sel_years:
     mask &= df["release_year"].isin(sel_years)
