@@ -1,54 +1,130 @@
-# KS-Capstone
 Digital Futures Capstone Project
+This repository implements an end-to-end ETL pipeline and interactive Streamlit dashboard for Steam games data through March 2025. We extract from Kaggle, clean & enrich the data, load it into PostgreSQL, and surface insights via Streamlit.
+
 Overview
-This project presents an in-depth analysis of Steam games released up to 03/2025. Using a dataset sourced from Kaggle, it explores key market trends, peak concurrent player counts, player engagement patterns, and projected revenue. The results are presented through an interactive Streamlit dashboard that allows users to filter and explore insights by release year, genre, and other attributes.
+Scope: Steam titles released up to March 2025, with metadata on genres, categories, pricing, player counts, and user sentiment.
+
+End result: A web-hosted dashboard showing your top games by current players, review ratios, revenue estimates, and more—filterable by year, price tier, genre, etc.
 
 Objectives
-Analyze the evolution of game genres, categories, and key features over time.
+Genre & category evolution
 
-Identify top-performing titles based on peak concurrent player counts.
+Top titles by concurrent players
 
-Evaluate player engagement trends and retention patterns.
+Player engagement & retention trends
 
-Estimate revenue projections using player metrics and pricing models.
+Revenue projection models
 
-Provide an intuitive, interactive Streamlit dashboard for data exploration.
+Streamlit dashboard for interactive exploration
 
-Dataset
-Source: Kaggle
+Data Source
+Kaggle: artermiloff/steam-games-dataset
 
-The dataset includes game titles, release dates, categories, genres, peak player counts, and other relevant metadata.
-https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
+Key fields: appid, name, release_date, price, genres, categories, positive/negative reviews, estimated_owners, current_players, etc.
 
 ETL Process
-Extract: Load the dataset from Kaggle.
+Extract
 
-Transform: Clean and preprocess data using Python (pandas, NumPy) to ensure consistency and usability.
+Download CSV via Kaggle API
 
-Load: Save the transformed data to CSV for dashboard integration.
+Transform
+
+Drop irrelevant columns, de-duplicate
+
+Parse dates, normalize list fields (genres, categories)
+
+Compute mid-point of estimated_owners ranges
+
+Tier prices, calculate estimated_revenue
+
+Fetch & cache live current_players via Steam API
+
+Derive positive_ratio
+
+Load
+
+Create schema & table in PostgreSQL
+
+Truncate and bulk-COPY enriched CSV
 
 Tools & Technologies
-Python – Data manipulation and processing
+Python (3.8+)
 
-Pandas – Data cleaning and transformation
+Pandas & NumPy
 
-Streamlit – Interactive dashboard development
+SQLAlchemy + psycopg2 (PostgreSQL)
 
-Matplotlib / Plotly – Visualizations
+Streamlit (dashboard)
+
+pytest, flake8, sqlfluff (testing & linting)
 
 Features
-Dynamic filtering by release year, genre, and category
+Default Top 10 games by current players
 
-Visual trends of peak concurrent player counts
+Filters: Release year, Price tier, Genres, Categories
 
-Summary metrics (e.g., top games, average players, estimated revenue)
+“Details” view for individual game metrics & header image
 
-Clean, responsive UI for data interaction
+Cached API calls (10 min) for performance
+
+Deployable on Streamlit Community or self-hosted
 
 Getting Started
-Clone the repository
+Clone the repo
 
-Install dependencies
+bash
+Copy
+Edit
+git clone https://github.com/Teranur/KS-Capstone.git
+cd KS-Capstone
+Install in editable mode
 
-in progress
+bash
+Copy
+Edit
+python -m venv .venv
+source .venv/bin/activate   # or .venv\Scripts\activate on Windows
+pip install -e .
+Create your environment files
 
+At the project root, copy and edit:
+
+bash
+Copy
+Edit
+cp .env.dev.example .env.dev
+Populate .env.dev with:
+
+# Steam API
+STEAM_API_KEY=your_steam_api_key
+
+# Postgres (local or remote)
+DB_USER=
+DB_PASSWORD=…
+DB_HOST=
+DB_PORT=5432
+DB_NAME=
+DB_SCHEMA=
+TABLE=kr_so_capstone
+Run the full ETL
+
+bash
+Copy
+Edit
+# Loads .env.dev, then Extract→Transform→Load
+run_etl dev
+Start the dashboard
+
+bash
+Copy
+Edit
+streamlit run streamlit/app.py
+Run tests & linters
+
+bash
+Copy
+Edit
+# All unit, integration, component tests + flake8 + sqlfluff
+pytest -q
+flake8
+sqlfluff lint etl/sql
