@@ -72,16 +72,11 @@ Deployable on Streamlit Community or self-hosted
 Getting Started
 Clone the repo
 
-bash
-Copy
-Edit
+
 git clone https://github.com/Teranur/KS-Capstone.git
 cd KS-Capstone
 Install in editable mode
 
-bash
-Copy
-Edit
 python -m venv .venv
 source .venv/bin/activate   # or .venv\Scripts\activate on Windows
 pip install -e .
@@ -89,9 +84,8 @@ Create your environment files
 
 At the project root, copy and edit:
 
-bash
-Copy
-Edit
+
+
 cp .env.dev.example .env.dev
 Populate .env.dev with:
 
@@ -108,22 +102,14 @@ DB_SCHEMA=
 TABLE=kr_so_capstone
 Run the full ETL
 
-bash
-Copy
-Edit
+
 # Loads .env.dev, then Extract→Transform→Load
 run_etl dev
 Start the dashboard
 
-bash
-Copy
-Edit
 streamlit run streamlit/app.py
 Run tests & linters
 
-bash
-Copy
-Edit
 # All unit, integration, component tests + flake8 + sqlfluff
 pytest -q
 flake8
