@@ -1,70 +1,81 @@
-# KS-Capstone
-Digital Futures Capstone Project
-Overview
-This project presents an in-depth analysis of Steam games released up to 03/2025. Using a dataset sourced from Kaggle, it explores key market trends, peak concurrent player counts, player engagement patterns, and projected revenue. The results are presented through an interactive Streamlit dashboard that allows users to filter and explore insights by release year, genre, and other attributes.
+## KS-Capstone: Digital Futures Capstone Project
 
-Objectives
-Analyze the evolution of game genres, categories, and key features over time.
+### Overview
 
-Identify top-performing titles based on peak concurrent player counts.
+This repository contains an analysis of Steam games released through March 2025. Leveraging a dataset from Kaggle, it examines market trends, peak concurrent player counts, engagement patterns, and revenue projections. Results are accessible via an interactive Streamlit dashboard, enabling dynamic filtering by release year, genre, and other attributes.
 
-Evaluate player engagement trends and retention patterns.
+### Objectives
 
-Estimate revenue projections using player metrics and pricing models.
+* **Trend Analysis:** Track the evolution of game genres, categories, and key features over time.
+* **Performance Ranking:** Identify top-performing titles based on peak concurrent players.
+* **Engagement Insights:** Evaluate player behavior and retention patterns.
+* **Revenue Estimation:** Project revenue using player metrics and pricing models.
+* **Interactive Visualization:** Deliver a user-friendly Streamlit dashboard for exploratory analysis.
 
-Provide an intuitive, interactive Streamlit dashboard for data exploration.
+### Dataset
 
-Dataset
-Source: Kaggle
+* **Source:** [Kaggle: Steam Games Dataset](https://www.kaggle.com/datasets/artermiloff/steam-games-dataset)
+* **Contents:** Game titles, release dates, categories, genres, player counts, Metacritic scores, and additional metadata.
 
-The dataset includes game titles, release dates, categories, genres, peak player counts, and other relevant metadata.
-https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
+### ETL Process
 
-ETL Process
-Extract: Load the dataset from Kaggle.
+1. **Extract:** Download the raw dataset from Kaggle.
+2. **Transform:** Clean and normalize data using Python and Pandas.
+3. **Load:** Export the processed data to CSV for integration with the dashboard.
 
-Transform: Clean and preprocess data using Python (pandas) to ensure consistency and usability.
+### Tools & Technologies
 
-Load: Save the transformed data to CSV for dashboard integration.
+* **Language:** Python
+* **Libraries:** Pandas (data manipulation), Streamlit (dashboard)
+* **Environment:** venv for dependency isolation
 
-Tools & Technologies
-Python – Data manipulation and processing
+### Installation
 
-Pandas – Data cleaning and transformation
+1. Clone this repository:
 
-Streamlit – Interactive dashboard development
+   ```bash
+   git clone https://github.com/Teranur/KS-Capstone.git
+   cd KS-Capstone
+   ```
+2. Create and activate a virtual environment:
 
-Features
-Dynamic filtering by release year, genre, and category
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate   # macOS/Linux
+   .\.venv\\Scripts\\activate  # Windows
+   ```
+3. Install dependencies:
 
-Visual trends of peak concurrent player counts
+   ```bash
+   pip install -r requirements.txt
+   pip install -r requirement-setup.txt
+   pip install -e .
+   ```
 
-Summary metrics (e.g., top games, estimated revenue, Metacritic_score)
+### Usage
 
-Clean, responsive UI for data interaction
+#### ETL Pipeline
 
-Getting Started
-Clone the repository
+Run the pipeline in development mode:
 
-Install Setup
-
-python3 -m venv .venv
-source .venv/Scripts/activate 
-
-Install dependencies
-pip install -r requirements.txt
-pip install -r requirement-setup.txt
-
-To set up the packages as modules
-pip install -e .
-
-Now you should be able to run:
+```bash
 run_etl dev
-this will start the pipeline if you supplied the correct environmental variables
+```
 
-to run Streamlit locally use:
+Ensure the required environment variables are set before execution.
 
+#### Streamlit Dashboard
+
+Launch the dashboard locally:
+
+```bash
 streamlit run streamlit/app.py
+```
 
-IF you want to deploy it to the cloud as your own
-use the app_cloud.py and supply the env.variables as secrets in streamlit community
+To deploy to Streamlit Community Cloud, use:
+
+```bash
+streamlit run app_cloud.py
+```
+
+Configure secrets in the Streamlit UI for necessary environment variables.
